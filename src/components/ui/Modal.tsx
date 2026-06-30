@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FiX } from 'react-icons/fi'
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 
 type Size = 'sm' | 'md' | 'lg'
 

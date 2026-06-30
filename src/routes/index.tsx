@@ -1,15 +1,29 @@
 import { createBrowserRouter } from 'react-router-dom'
-import RootLayout from '@/layouts/RootLayout'
+import ProtectedLayout from '@/layouts/ProtectedLayout'
+import AppLayout from '@/layouts/AppLayout'
+import DashboardPage from '@/features/dashboard/pages/DashboardPage'
+import LoginPage from '@/features/auth/pages/LoginPage'
 import NotFoundPage from '@/pages/NotFoundPage'
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <RootLayout />,
-    errorElement: <NotFoundPage />, // catches errors thrown by any child route
+    // Standalone - no sidebar/navbar chrome around the login screen
+    path: '/login',
+    element: <LoginPage />,
+  },
+  {
+    // Auth guard - redirects to /login when there's no session
+    element: <ProtectedLayout />,
     children: [
-      // Feature routes are added here as the dashboard grows
-      // e.g. { path: 'dashboard', lazy: () => import('@/features/dashboard/DashboardPage') }
+      {
+        path: '/',
+        element: <AppLayout />, // sidebar + navbar chrome around every routed page
+        errorElement: <NotFoundPage />, // catches errors thrown by any child route
+        children: [
+          { index: true, element: <DashboardPage /> },
+          // Further feature routes (projects, users, ...) are added here as siblings
+        ],
+      },
     ],
   },
   {

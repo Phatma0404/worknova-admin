@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 
 // Composable card: use <Card> as the shell and the sub-parts for structured
 // sections, or just drop arbitrary children inside. Each accepts className.

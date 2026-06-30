@@ -1,18 +1,37 @@
-import type { IconType } from 'react-icons'
-import { FiGrid, FiFolder, FiCheckSquare, FiUsers, FiSettings } from 'react-icons/fi'
+import type { LucideIcon } from 'lucide-react'
+import { LayoutDashboard, BarChart3, FolderKanban, ListChecks, Users, Settings } from 'lucide-react'
 
 export interface NavItem {
   label: string
   to: string
-  icon: IconType
+  icon: LucideIcon
 }
 
-// Single source of truth for the sidebar links - kept separate so the desktop
-// rail and the mobile drawer render the exact same set.
-export const navItems: NavItem[] = [
-  { label: 'Dashboard', to: '/', icon: FiGrid },
-  { label: 'Projects', to: '/projects', icon: FiFolder },
-  { label: 'Tasks', to: '/tasks', icon: FiCheckSquare },
-  { label: 'Team', to: '/team', icon: FiUsers },
-  { label: 'Settings', to: '/settings', icon: FiSettings },
+export interface NavSection {
+  label: string
+  items: NavItem[]
+}
+
+// Grouped navigation - the labels become the section headers (MAIN / MANAGEMENT
+// / SYSTEM) and the same list feeds both the desktop rail and the mobile drawer.
+export const navSections: NavSection[] = [
+  {
+    label: 'MAIN',
+    items: [
+      { label: 'Dashboard', to: '/', icon: LayoutDashboard },
+      { label: 'Analytics', to: '/analytics', icon: BarChart3 },
+    ],
+  },
+  {
+    label: 'MANAGEMENT',
+    items: [
+      { label: 'Projects', to: '/projects', icon: FolderKanban },
+      { label: 'Tasks', to: '/tasks', icon: ListChecks },
+      { label: 'Team', to: '/team', icon: Users },
+    ],
+  },
+  {
+    label: 'SYSTEM',
+    items: [{ label: 'Settings', to: '/settings', icon: Settings }],
+  },
 ]

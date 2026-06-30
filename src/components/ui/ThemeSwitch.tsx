@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { FiMoon, FiSun } from 'react-icons/fi'
 import { useThemeStore } from '@/store/theme'
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 
 interface ThemeSwitchProps {
   className?: string
