@@ -104,7 +104,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           </div>
           <button
             onClick={handleLogout}
-            className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
+            className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground cursor-pointer"
             aria-label="Logout"
           >
             <LogOut className="size-4" />

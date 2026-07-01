@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Compass, ArrowLeft, Home } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 
 export default function NotFoundPage() {
   return (
@@ -20,7 +20,7 @@ export default function NotFoundPage() {
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row">
-        <Button variant="outline" onClick={() => window.history.back()}>
+        <Button variant="outline" onClick={() => window.history.back()} className='cursor-pointer'>
           <ArrowLeft className="size-4" />
           Go back
         </Button>

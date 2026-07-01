@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { Menu, Search, Bell, ChevronDown, User, Settings, LogOut } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import Avatar from '@/components/ui/Avatar'
 import ThemeSwitch from '@/components/ui/ThemeSwitch'
 import {
@@ -59,7 +59,7 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
 
       <div className="flex items-center gap-1 md:ml-0 ml-auto md:gap-2">
         {/* Notifications */}
-        <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
+        <Button variant="ghost" size="icon" className="relative cursor-pointer" aria-label="Notifications">
           <Bell className="size-5" />
           <span className="absolute -right-0.5 -top-0.5 flex size-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-medium text-white ring-2 ring-background">
             3
@@ -67,13 +67,13 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
         </Button>
 
         {/* Light / dark toggle */}
-        <ThemeSwitch />
+        <ThemeSwitch className="cursor-pointer" />
 
         {/* User avatar + dropdown */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button
-              className="flex items-center gap-2 rounded-lg p-1 outline-none transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring/50"
+              className="flex items-center gap-2 rounded-lg p-1 outline-none transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring/50 cursor-pointer"
               aria-label="Open user menu"
             >
               <Avatar name={name} size="sm" />
@@ -86,16 +86,16 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
               <p className="truncate text-xs font-normal text-muted-foreground">{email}</p>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
               <User className="size-4" />
               Profile
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
               <Settings className="size-4" />
               Settings
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem variant="destructive" onClick={handleLogout}>
+            <DropdownMenuItem variant="destructive" onClick={handleLogout} className="cursor-pointer">
               <LogOut className="size-4" />
               Logout
             </DropdownMenuItem>

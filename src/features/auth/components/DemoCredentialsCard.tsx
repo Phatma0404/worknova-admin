@@ -1,5 +1,5 @@
 import { Sparkles, ArrowRight } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { DEMO_EMAIL, DEMO_PASSWORD } from '../constants'
 
 interface DemoCredentialsCardProps {
@@ -26,7 +26,7 @@ export default function DemoCredentialsCard({ onFill }: DemoCredentialsCardProps
         </div>
       </div>
 
-      <Button variant="outline" className="w-full" onClick={onFill}>
+      <Button variant="outline" className="w-full cursor-pointer" onClick={onFill}>
         Fill Demo Credentials
         <ArrowRight className="size-4" />
       </Button>
