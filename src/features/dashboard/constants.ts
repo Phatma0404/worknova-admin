@@ -83,11 +83,11 @@ export interface RecentUser {
 }
 
 export const recentUsers: RecentUser[] = [
-  { id: 'u1', name: 'Ada Lovelace', email: 'ada@projectflow.io', role: 'Admin', status: 'active' },
-  { id: 'u2', name: 'Grace Hopper', email: 'grace@projectflow.io', role: 'Manager', status: 'active' },
-  { id: 'u3', name: 'Alan Turing', email: 'alan@projectflow.io', role: 'Developer', status: 'invited' },
-  { id: 'u4', name: 'Katherine Johnson', email: 'kat@projectflow.io', role: 'Analyst', status: 'active' },
-  { id: 'u5', name: 'Linus Torvalds', email: 'linus@projectflow.io', role: 'Developer', status: 'inactive' },
+  { id: 'u1', name: 'Ada Lovelace', email: 'ada@worknova.io', role: 'Admin', status: 'active' },
+  { id: 'u2', name: 'Grace Hopper', email: 'grace@worknova.io', role: 'Manager', status: 'active' },
+  { id: 'u3', name: 'Alan Turing', email: 'alan@worknova.io', role: 'Developer', status: 'invited' },
+  { id: 'u4', name: 'Katherine Johnson', email: 'kat@worknova.io', role: 'Analyst', status: 'active' },
+  { id: 'u5', name: 'Linus Torvalds', email: 'linus@worknova.io', role: 'Developer', status: 'inactive' },
 ]
 
 export type ProjectStatus = 'on-track' | 'at-risk' | 'completed'

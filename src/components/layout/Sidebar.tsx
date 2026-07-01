@@ -73,7 +73,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           <Workflow className="size-5" />
         </div>
         <div className="flex flex-col leading-tight">
-          <span className="text-sm font-bold">ProjectFlow</span>
+          <span className="text-sm font-bold">WorkNova</span>
           <span className="text-xs text-muted-foreground">Admin Dashboard</span>
         </div>
       </div>

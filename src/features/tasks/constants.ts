@@ -8,7 +8,7 @@ export const PAGE_SIZE = 8
 
 // Projects used in task relationships - mirrors key entries from features/projects/constants.ts
 export const TASK_PROJECTS = [
-  { id: 'p01', name: 'ProjectFlow Admin Dashboard' },
+  { id: 'p01', name: 'WorkNova Admin Dashboard' },
   { id: 'p02', name: 'E-Commerce Redesign' },
   { id: 'p03', name: 'AI-Powered Analytics Engine' },
   { id: 'p04', name: 'Mobile Banking App' },
@@ -36,13 +36,13 @@ export const TASK_ASSIGNEES = [
 ]
 
 export const mockTasks: Task[] = [
-  // ProjectFlow Admin Dashboard
+  // WorkNova Admin Dashboard
   {
     id: 't01',
     name: 'Design sidebar navigation component',
     description: 'Create a responsive sidebar with collapsible sections, active state indicators, and smooth mobile drawer animation.',
     projectId: 'p01',
-    projectName: 'ProjectFlow Admin Dashboard',
+    projectName: 'WorkNova Admin Dashboard',
     assigneeId: 'u11',
     assigneeName: 'Sofia Kovalevskaya',
     status: 'done',
@@ -57,7 +57,7 @@ export const mockTasks: Task[] = [
     name: 'Implement authentication flow',
     description: 'Build login page with form validation, demo credentials card, and protected route guard using Zustand store.',
     projectId: 'p01',
-    projectName: 'ProjectFlow Admin Dashboard',
+    projectName: 'WorkNova Admin Dashboard',
     assigneeId: 'u01',
     assigneeName: 'Ada Lovelace',
     status: 'done',
@@ -72,7 +72,7 @@ export const mockTasks: Task[] = [
     name: 'Build analytics charts',
     description: 'Integrate Recharts library for revenue trends, user growth, task completion, and weekly activity charts.',
     projectId: 'p01',
-    projectName: 'ProjectFlow Admin Dashboard',
+    projectName: 'WorkNova Admin Dashboard',
     assigneeId: 'u04',
     assigneeName: 'Katherine Johnson',
     status: 'done',
@@ -87,7 +87,7 @@ export const mockTasks: Task[] = [
     name: 'Users management CRUD module',
     description: 'Implement full users page with search, filtering, sorting, pagination, and add/edit/delete/view dialogs.',
     projectId: 'p01',
-    projectName: 'ProjectFlow Admin Dashboard',
+    projectName: 'WorkNova Admin Dashboard',
     assigneeId: 'u02',
     assigneeName: 'Grace Hopper',
     status: 'done',
@@ -102,7 +102,7 @@ export const mockTasks: Task[] = [
     name: 'Projects management module',
     description: 'Build projects page with table, progress bars, team avatars, and full CRUD dialogs including budget and tag fields.',
     projectId: 'p01',
-    projectName: 'ProjectFlow Admin Dashboard',
+    projectName: 'WorkNova Admin Dashboard',
     assigneeId: 'u06',
     assigneeName: 'Margaret Hamilton',
     status: 'done',
@@ -117,7 +117,7 @@ export const mockTasks: Task[] = [
     name: 'Tasks management module',
     description: 'Build tasks page with relationships to projects and users, priority sorting, and full CRUD dialogs.',
     projectId: 'p01',
-    projectName: 'ProjectFlow Admin Dashboard',
+    projectName: 'WorkNova Admin Dashboard',
     assigneeId: 'u01',
     assigneeName: 'Ada Lovelace',
     status: 'in-progress',
@@ -132,7 +132,7 @@ export const mockTasks: Task[] = [
     name: 'Dark mode & theme system',
     description: 'Integrate CSS custom property-based theming with Zustand persistence and a theme toggle in the navbar.',
     projectId: 'p01',
-    projectName: 'ProjectFlow Admin Dashboard',
+    projectName: 'WorkNova Admin Dashboard',
     assigneeId: 'u11',
     assigneeName: 'Sofia Kovalevskaya',
     status: 'in-progress',
@@ -147,7 +147,7 @@ export const mockTasks: Task[] = [
     name: 'Responsive mobile layout audit',
     description: 'Review and fix all breakpoints across dashboard, analytics, users, projects, and tasks pages for mobile usability.',
     projectId: 'p01',
-    projectName: 'ProjectFlow Admin Dashboard',
+    projectName: 'WorkNova Admin Dashboard',
     assigneeId: 'u13',
     assigneeName: 'Hedy Lamarr',
     status: 'todo',

@@ -19,7 +19,7 @@ interface LoginFormProps {
 const inputClass =
   'h-10 w-full rounded-lg border border-input bg-background text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50'
 
-const DEMO_EMAIL = 'demo@projectflow.com'
+const DEMO_EMAIL = 'demo@worknova.com'
 const DEMO_PASSWORD = '123456'
 
 export default function LoginForm({

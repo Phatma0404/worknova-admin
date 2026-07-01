@@ -85,7 +85,7 @@ export default function UserFormDialog({ user, onClose, onSubmit }: UserFormDial
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="jane@projectflow.io"
+              placeholder="jane@worknova.io"
               className={inputClass}
             />
           </div>

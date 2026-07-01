@@ -30,7 +30,7 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
 
   // Fallbacks so the navbar looks complete before auth is wired up.
   const name = user?.name ?? 'Admin User'
-  const email = user?.email ?? 'admin@projectflow.io'
+  const email = user?.email ?? 'admin@worknova.io'
 
   return (
     <header className="sticky top-0 z-30 flex h-16 shrink-0 items-center gap-3 border-b border-border bg-background/95 px-4 backdrop-blur lg:px-6">

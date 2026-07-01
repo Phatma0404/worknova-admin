@@ -7,6 +7,9 @@ import UsersPage from '@/features/users/pages/UsersPage'
 import ProjectsPage from '@/features/projects/pages/ProjectsPage'
 import TasksPage from '@/features/tasks/pages/TasksPage'
 import TeamPage from '@/features/team/pages/TeamPage'
+import SettingsPage from '@/features/settings/pages/SettingsPage'
+import ProfilePage from '@/features/profile/pages/ProfilePage'
+import CalendarPage from '@/features/calendar/pages/CalendarPage'
 import LoginPage from '@/features/auth/pages/LoginPage'
 import NotFoundPage from '@/pages/NotFoundPage'
 
@@ -31,7 +34,10 @@ export const router = createBrowserRouter([
           { path: 'projects', element: <ProjectsPage /> },
           { path: 'tasks', element: <TasksPage /> },
           { path: 'team', element: <TeamPage /> },
-          // Further feature routes (settings, ...) are added here as siblings
+          { path: 'settings', element: <SettingsPage /> },
+          { path: 'profile', element: <ProfilePage /> },
+          { path: 'calendar', element: <CalendarPage /> },
+          // Further feature routes are added here as siblings
         ],
       },
     ],

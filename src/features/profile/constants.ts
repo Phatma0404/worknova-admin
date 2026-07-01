@@ -1,0 +1,115 @@
+import type { UserProfile } from './types'
+
+export const DEPARTMENTS = [
+  'Engineering',
+  'Design',
+  'Product',
+  'Marketing',
+  'Sales',
+  'Support',
+] as const
+
+// Realistic single-user profile. No API - this seeds the page's local state.
+export const mockProfile: UserProfile = {
+  id: 'u1',
+  name: 'Alex Morgan',
+  title: 'Senior Product Designer',
+  department: 'Design',
+  email: 'alex.morgan@worknova.com',
+  phone: '+1 (415) 555-0198',
+  location: 'San Francisco, CA',
+  joinDate: '2021-03-15',
+  online: true,
+  bio: "Product designer with a decade of experience crafting intuitive, accessible interfaces for B2B SaaS. I lead the design system team, partner closely with engineering, and care deeply about the details that make software feel effortless.",
+  skills: [
+    'Product Design',
+    'Design Systems',
+    'Figma',
+    'Prototyping',
+    'User Research',
+    'Accessibility',
+    'Design Ops',
+    'Front-end',
+  ],
+  yearsOfExperience: 10,
+  stats: {
+    completedTasks: 284,
+    activeProjects: 5,
+    teamMemberships: 8,
+    productivityScore: 92,
+  },
+  projects: [
+    {
+      id: 'p1',
+      name: 'Mobile Banking App Redesign',
+      progress: 78,
+      status: 'in-progress',
+      dueDate: '2026-08-14',
+    },
+    {
+      id: 'p2',
+      name: 'Design System 2.0',
+      progress: 45,
+      status: 'in-progress',
+      dueDate: '2026-09-30',
+    },
+    {
+      id: 'p3',
+      name: 'Onboarding Flow Revamp',
+      progress: 100,
+      status: 'completed',
+      dueDate: '2026-06-20',
+    },
+    {
+      id: 'p4',
+      name: 'Marketing Site Refresh',
+      progress: 20,
+      status: 'planning',
+      dueDate: '2026-10-12',
+    },
+    {
+      id: 'p5',
+      name: 'Analytics Dashboard',
+      progress: 62,
+      status: 'review',
+      dueDate: '2026-07-28',
+    },
+  ],
+  activities: [
+    {
+      id: 'a1',
+      type: 'completed-task',
+      title: 'Completed "Finalize checkout screens"',
+      description: 'Mobile Banking App Redesign',
+      timestamp: '2 hours ago',
+    },
+    {
+      id: 'a2',
+      type: 'assigned-task',
+      title: 'Assigned "Audit color contrast"',
+      description: 'Design System 2.0',
+      timestamp: 'Yesterday',
+    },
+    {
+      id: 'a3',
+      type: 'created-project',
+      title: 'Created project "Marketing Site Refresh"',
+      description: 'Set milestones and invited 4 collaborators',
+      timestamp: '3 days ago',
+    },
+    {
+      id: 'a4',
+      type: 'updated-profile',
+      title: 'Updated profile information',
+      description: 'Changed job title and added new skills',
+      timestamp: '5 days ago',
+    },
+    {
+      id: 'a5',
+      type: 'completed-task',
+      title: 'Completed "Ship empty states"',
+      description: 'Analytics Dashboard',
+      timestamp: '1 week ago',
+    },
+  ],
+}

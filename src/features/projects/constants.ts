@@ -9,7 +9,7 @@ export const PAGE_SIZE = 8
 export const mockProjects: Project[] = [
   {
     id: 'p01',
-    name: 'ProjectFlow Admin Dashboard',
+    name: 'WorkNova Admin Dashboard',
     client: 'Internal',
     status: 'in-progress',
     priority: 'high',

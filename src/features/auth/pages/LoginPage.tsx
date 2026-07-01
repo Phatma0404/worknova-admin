@@ -26,7 +26,7 @@ export default function LoginPage() {
             <div className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <Workflow className="size-5" />
             </div>
-            <span className="text-lg font-bold text-foreground">ProjectFlow</span>
+            <span className="text-lg font-bold text-foreground">WorkNova</span>
           </div>
 
           <div className="space-y-1">
