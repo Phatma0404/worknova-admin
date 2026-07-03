@@ -1,31 +1,31 @@
 # 🚀 WorkNova Admin
 
-**WorkNova**, layihə və komanda idarəetməsi üçün hazırlanmış müasir bir **admin panel**dir. İstifadəçilər, layihələr, tapşırıqlar, komanda üzvləri, təqvim və bildirişlər kimi bütün əməliyyatları tək bir ekrandan idarə etməyə imkan verir.
+**WorkNova** is a modern **admin panel** built for project and team management. It lets you manage users, projects, tasks, team members, calendar events, and notifications all from a single dashboard.
 
-> ⚠️ Bu, hazırda **frontend-only** bir layihədir - real backend/API-yə qoşulmayıb. Bütün data (istifadəçilər, layihələr, tapşırıqlar və s.) `constants.ts` fayllarında mock data olaraq saxlanılır. Giriş də real doğrulama etmir - yalnız demo login axışını simulyasiya edir.
+> ⚠️ This is currently a **frontend-only** project - it is not connected to a real backend/API. All data (users, projects, tasks, etc.) is stored as mock data inside `constants.ts` files. Login does not perform real authentication either - it only simulates the demo login flow.
 
 ---
 
-## 📸 Nə edir?
+## 📸 What it does
 
-Sidebar + navbar olan klassik admin dashboard strukturu üzərində qurulub. Sol menyudan aşağıdakı modullara keçid var:
+Built on a classic admin dashboard layout with a sidebar and navbar. The sidebar links to the following modules:
 
-| Modul | Nə üçündür |
+| Module | What it's for |
 |---|---|
-| 📊 **Dashboard** | Ümumi statistika kartları, gəlir qrafiki, son layihələr və son istifadəçilər cədvəli |
-| 📈 **Analytics** | Analitika səhifəsi (qrafiklər, metrikalar) |
-| 👥 **Users** | İstifadəçi siyahısı və idarəetməsi |
-| 📁 **Projects** | Layihələrin siyahısı və detalları |
-| ✅ **Tasks** | Tapşırıq idarəetməsi |
-| 🧑‍🤝‍🧑 **Team** | Komanda üzvləri |
-| ⚙️ **Settings** | Tənzimləmələr (təhlükəsizlik daxil) |
-| 🙍 **Profile** | İstifadəçi profili |
-| 📅 **Calendar** | Təqvim/planlaşdırma |
-| 🔔 **Notifications** | Filtr, axtarış və toplu əməliyyatlarla tam bildiriş qutusu |
-| 🔐 **Auth** | Giriş ekranı (demo credentials ilə) |
+| 📊 **Dashboard** | Overview stat cards, revenue chart, recent projects, and recent users table |
+| 📈 **Analytics** | Analytics page (charts, metrics) |
+| 👥 **Users** | User list and management |
+| 📁 **Projects** | Project list and details |
+| ✅ **Tasks** | Task management |
+| 🧑‍🤝‍🧑 **Team** | Team members |
+| ⚙️ **Settings** | Settings (including security) |
+| 🙍 **Profile** | User profile |
+| 📅 **Calendar** | Calendar/scheduling |
+| 🔔 **Notifications** | Full notifications inbox with filtering, search, and bulk actions |
+| 🔐 **Auth** | Login screen (with demo credentials) |
 
-### 🔑 Demo giriş məlumatları
-Login səhifəsində "Fill Demo Credentials" düyməsi ilə avtomatik doldurulur:
+### 🔑 Demo login credentials
+Auto-filled on the login page via the "Fill Demo Credentials" button:
 ```
 Email:    demo@worknova.com
 Password: 123456
@@ -33,48 +33,48 @@ Password: 123456
 
 ---
 
-## 🛠️ Texnologiyalar
+## 🛠️ Tech stack
 
-| Kateqoriya | Texnologiya |
+| Category | Technology |
 |---|---|
 | Framework | React 19 + TypeScript + Vite |
 | Routing | React Router v7 |
 | Styling | Tailwind CSS v4 + shadcn/ui (Radix UI) |
 | State | Zustand (auth, theme) |
 | Data fetching | TanStack Query |
-| Cədvəllər | TanStack Table |
-| Formlar | React Hook Form + Zod |
-| Qrafiklər | Recharts |
-| Animasiya | Framer Motion |
-| Bildirişlər (toast) | Sonner |
+| Tables | TanStack Table |
+| Forms | React Hook Form + Zod |
+| Charts | Recharts |
+| Animation | Framer Motion |
+| Toasts | Sonner |
 
 ---
 
-## 📂 Qovluq strukturu
+## 📂 Folder structure
 
 ```
 src/
-├── features/          # Hər modul öz qovluğunda (dashboard, users, projects, tasks, team...)
+├── features/          # Each module lives in its own folder (dashboard, users, projects, tasks, team...)
 │   └── <feature>/
-│       ├── components/    # Modula xas komponentlər
-│       ├── pages/          # Route-a bağlanan səhifə komponenti
+│       ├── components/    # Module-specific components
+│       ├── pages/          # Page component wired to a route
 │       ├── constants.ts    # Mock data
-│       └── types.ts        # TypeScript tipləri
+│       └── types.ts        # TypeScript types
 ├── components/
 │   ├── layout/         # Sidebar, Navbar
-│   └── ui/             # shadcn/ui əsaslı ortaq UI komponentləri
+│   └── ui/             # Shared UI components built on shadcn/ui
 ├── layouts/            # RootLayout, AppLayout, ProtectedLayout (auth guard)
-├── routes/             # Bütün route tərifləri (react-router)
-├── store/              # Zustand store-ları (auth, theme)
-└── shared/             # Ortaq hook və lib-lər (query client, utils)
+├── routes/             # All route definitions (react-router)
+├── store/              # Zustand stores (auth, theme)
+└── shared/             # Shared hooks and libs (query client, utils)
 ```
 
 ---
 
-## ▶️ İşə salmaq
+## ▶️ Getting started
 
 ```bash
-# Paketləri quraşdır
+# Install dependencies
 npm install
 
 # Development server (Vite)
@@ -83,7 +83,7 @@ npm run dev
 # Production build
 npm run build
 
-# Build-i lokal önizləmə
+# Preview the build locally
 npm run preview
 
 # Lint
@@ -92,11 +92,11 @@ npm run lint
 
 ---
 
-## 🧭 Route xəritəsi
+## 🧭 Route map
 
 ```
-/login              → Giriş ekranı (sidebar/navbar olmadan)
-/                   → Dashboard (ProtectedLayout ilə qorunur)
+/login              → Login screen (no sidebar/navbar chrome)
+/                   → Dashboard (guarded by ProtectedLayout)
 /analytics
 /users
 /projects
@@ -106,7 +106,7 @@ npm run lint
 /profile
 /calendar
 /notifications
-*                    → 404 səhifəsi
+*                    → 404 page
 ```
 
-`ProtectedLayout` token yoxdursa avtomatik `/login`-ə yönləndirir və istifadəçinin hara getmək istədiyini yadda saxlayır ki, girişdən sonra oraya qaytarsın.
+`ProtectedLayout` redirects to `/login` when there's no token, and remembers where the user was headed so login can send them back there afterwards.
