@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Plus, Users, UserCheck, Clock, Ban } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -8,7 +9,6 @@ import CustomersToolbar from '../components/CustomersToolbar'
 import CustomersTable from '../components/CustomersTable'
 import CustomersPagination from '../components/CustomersPagination'
 import CustomerFormDialog from '../components/CustomerFormDialog'
-import ViewCustomerDialog from '../components/ViewCustomerDialog'
 import DeleteCustomerDialog from '../components/DeleteCustomerDialog'
 import { PAGE_SIZE } from '../data/mockCustomers'
 import { exportCustomersToCsv } from '../utils'
@@ -18,11 +18,11 @@ import type { CustomerFormValues } from '../schema'
 type DialogState =
   | { type: 'add' }
   | { type: 'edit'; customer: Customer }
-  | { type: 'view'; customer: Customer }
   | { type: 'delete'; customer: Customer }
   | null
 
 export default function CustomersPage() {
+  const navigate = useNavigate()
   const {
     sortedCustomers,
     stats,
@@ -134,7 +134,7 @@ export default function CustomersPage() {
         />
         <CustomersTable
           customers={paginated}
-          onView={(c) => setDialog({ type: 'view', customer: c })}
+          onView={(c) => navigate(`/customers/${c.id}`, { state: { customer: c } })}
           onEdit={(c) => setDialog({ type: 'edit', customer: c })}
           onDelete={(c) => setDialog({ type: 'delete', customer: c })}
         />
@@ -162,9 +162,6 @@ export default function CustomersPage() {
           onClose={() => setDialog(null)}
           onSubmit={handleUpdate}
         />
-      )}
-      {dialog?.type === 'view' && (
-        <ViewCustomerDialog customer={dialog.customer} onClose={() => setDialog(null)} />
       )}
       {dialog?.type === 'delete' && (
         <DeleteCustomerDialog

@@ -4,7 +4,7 @@ import { cn } from '@/shared/lib/utils'
 
 interface CustomerStatCardProps {
   label: string
-  value: number
+  value: number | string // pass a pre-formatted string for currency/duration
   icon: LucideIcon
   iconClass: string // colored icon container (bg + text)
 }
@@ -18,7 +18,9 @@ export default function CustomerStatCard({ label, value, icon: Icon, iconClass }
           <Icon className="size-5" />
         </div>
       </div>
-      <p className="mt-3 text-3xl font-bold tracking-tight text-foreground">{value.toLocaleString()}</p>
+      <p className="mt-3 text-3xl font-bold tracking-tight text-foreground">
+        {typeof value === 'number' ? value.toLocaleString() : value}
+      </p>
     </Card>
   )
 }
