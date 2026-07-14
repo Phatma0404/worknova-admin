@@ -64,7 +64,7 @@ export default function CustomersToolbar({
             <SelectValue placeholder="Status" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All statuses</SelectItem>
+            <SelectItem value="all">All</SelectItem>
             {STATUSES.map((s) => (
               <SelectItem key={s} value={s} className="capitalize">
                 {s}
@@ -78,7 +78,7 @@ export default function CustomersToolbar({
             <SelectValue placeholder="Company" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All companies</SelectItem>
+            <SelectItem value="all">All Companies</SelectItem>
             {companies.map((c) => (
               <SelectItem key={c} value={c}>
                 {c}

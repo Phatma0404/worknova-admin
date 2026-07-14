@@ -1,33 +1,47 @@
 import { useCallback, useMemo, useState } from 'react'
 import { mockCustomers } from '../data/mockCustomers'
-import { generateCustomerId, simulateLatency, fullName } from '../utils'
-import type { Customer, CustomerFilters, CompanyFilter, StatusFilter } from '../types'
+import { generateCustomerId, simulateLatency, fullName, sortCustomers as applySortOrder } from '../utils'
+import type { Customer, CustomerFilters, CompanyFilter, StatusFilter, SortOption } from '../types'
 import type { CustomerFormValues } from '../schema'
 
-// Owns all Customers business logic (state, CRUD, search, filter, derived
-// stats) so UI components stay presentational. The async CRUD functions are
-// shaped like real API calls (Promise-returning, with a simulated delay) so
-// swapping the in-memory store for a REST client later only touches this file.
+// Owns all Customers business logic (state, CRUD, search, filter, sort,
+// derived stats) so UI components stay presentational. The async CRUD
+// functions are shaped like real API calls (Promise-returning, with a
+// simulated delay) so swapping the in-memory store for a REST client later
+// only touches this file.
 export function useCustomers() {
   const [allCustomers, setAllCustomers] = useState<Customer[]>(() => [...mockCustomers])
   const [search, setSearch] = useState('')
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all')
   const [companyFilter, setCompanyFilter] = useState<CompanyFilter>('all')
+  const [sort, setSort] = useState<SortOption>('newest')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const customers = useMemo(() => {
+  // Search -> filter -> sort, each its own memo so an update to one input
+  // (e.g. changing sort) doesn't re-run the search/filter predicates.
+  const searchedCustomers = useMemo(() => {
     const q = search.trim().toLowerCase()
-    return allCustomers.filter((c) => {
-      const matchesSearch =
-        q === '' ||
+    if (q === '') return allCustomers
+    return allCustomers.filter(
+      (c) =>
         fullName(c).toLowerCase().includes(q) ||
         c.email.toLowerCase().includes(q) ||
-        c.company.toLowerCase().includes(q)
+        c.company.toLowerCase().includes(q),
+    )
+  }, [allCustomers, search])
+
+  const filteredCustomers = useMemo(() => {
+    return searchedCustomers.filter((c) => {
       const matchesStatus = statusFilter === 'all' || c.status === statusFilter
       const matchesCompany = companyFilter === 'all' || c.company === companyFilter
-      return matchesSearch && matchesStatus && matchesCompany
+      return matchesStatus && matchesCompany
     })
-  }, [allCustomers, search, statusFilter, companyFilter])
+  }, [searchedCustomers, statusFilter, companyFilter])
+
+  const sortedCustomers = useMemo(
+    () => applySortOrder(filteredCustomers, sort),
+    [filteredCustomers, sort],
+  )
 
   const stats = useMemo(
     () => ({
@@ -50,6 +64,8 @@ export function useCustomers() {
     if (filters.status !== undefined) setStatusFilter(filters.status)
     if (filters.company !== undefined) setCompanyFilter(filters.company)
   }, [])
+
+  const sortCustomers = useCallback((option: SortOption) => setSort(option), [])
 
   const createCustomer = useCallback(async (input: CustomerFormValues): Promise<void> => {
     setIsSubmitting(true)
@@ -83,15 +99,17 @@ export function useCustomers() {
   }, [])
 
   return {
-    customers,
+    sortedCustomers,
     stats,
     companies,
     search,
     statusFilter,
     companyFilter,
+    sort,
     isSubmitting,
     searchCustomers,
     filterCustomers,
+    sortCustomers,
     createCustomer,
     updateCustomer,
     deleteCustomer,

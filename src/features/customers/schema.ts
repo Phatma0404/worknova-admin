@@ -7,7 +7,7 @@ export const customerSchema = z.object({
   phone: z.string().min(1, 'Phone number is required.'),
   company: z.string().min(1, 'Company is required.'),
   jobTitle: z.string().optional(),
-  status: z.enum(['active', 'pending', 'blocked']),
+  status: z.enum(['active', 'pending', 'inactive', 'blocked']),
   notes: z.string().optional(),
 })
 

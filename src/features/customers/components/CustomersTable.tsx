@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { useReactTable, getCoreRowModel, flexRender, createColumnHelper } from '@tanstack/react-table'
-import { MoreHorizontal, Eye, Pencil, Trash2 } from 'lucide-react'
+import { MoreHorizontal, Eye, Pencil, Trash2, SearchX } from 'lucide-react'
+import EmptyState from '@/components/ui/EmptyState'
 import {
   Table,
   TableHeader,
@@ -143,11 +144,13 @@ export default function CustomersTable({ customers, onView, onEdit, onDelete }: 
       <TableBody>
         {table.getRowModel().rows.length === 0 ? (
           <TableRow className="hover:bg-transparent">
-            <TableCell
-              colSpan={columns.length}
-              className="h-24 text-center text-sm text-muted-foreground"
-            >
-              No customers found.
+            <TableCell colSpan={columns.length} className="p-0">
+              <EmptyState
+                icon={<SearchX className="size-8" />}
+                title="No customers found"
+                description="Try changing your search or filters."
+                className="rounded-none border-none"
+              />
             </TableCell>
           </TableRow>
         ) : (

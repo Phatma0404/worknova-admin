@@ -1,4 +1,4 @@
-export type CustomerStatus = 'active' | 'pending' | 'blocked'
+export type CustomerStatus = 'active' | 'pending' | 'inactive' | 'blocked'
 
 export interface Customer {
   id: string

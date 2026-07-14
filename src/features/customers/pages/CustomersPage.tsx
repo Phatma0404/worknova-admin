@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Plus, Users, UserCheck, Clock, Ban } from 'lucide-react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -11,8 +11,8 @@ import CustomerFormDialog from '../components/CustomerFormDialog'
 import ViewCustomerDialog from '../components/ViewCustomerDialog'
 import DeleteCustomerDialog from '../components/DeleteCustomerDialog'
 import { PAGE_SIZE } from '../data/mockCustomers'
-import { sortCustomers, exportCustomersToCsv } from '../utils'
-import type { Customer, SortOption } from '../types'
+import { exportCustomersToCsv } from '../utils'
+import type { Customer } from '../types'
 import type { CustomerFormValues } from '../schema'
 
 type DialogState =
@@ -24,29 +24,28 @@ type DialogState =
 
 export default function CustomersPage() {
   const {
-    customers,
+    sortedCustomers,
     stats,
     companies,
     search,
     statusFilter,
     companyFilter,
+    sort,
     isSubmitting,
     searchCustomers,
     filterCustomers,
+    sortCustomers,
     createCustomer,
     updateCustomer,
     deleteCustomer,
   } = useCustomers()
 
-  const [sort, setSort] = useState<SortOption>('newest')
   const [page, setPage] = useState(1)
   const [dialog, setDialog] = useState<DialogState>(null)
 
-  const sorted = useMemo(() => sortCustomers(customers, sort), [customers, sort])
-
-  const pageCount = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE))
+  const pageCount = Math.max(1, Math.ceil(sortedCustomers.length / PAGE_SIZE))
   const currentPage = Math.min(page, pageCount)
-  const paginated = sorted.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
+  const paginated = sortedCustomers.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
 
   const resetPage = () => setPage(1)
 
@@ -130,8 +129,8 @@ export default function CustomersPage() {
           }}
           companies={companies}
           sort={sort}
-          onSortChange={setSort}
-          onExport={() => exportCustomersToCsv(sorted, 'customers.csv')}
+          onSortChange={sortCustomers}
+          onExport={() => exportCustomersToCsv(sortedCustomers, 'customers.csv')}
         />
         <CustomersTable
           customers={paginated}
@@ -142,7 +141,7 @@ export default function CustomersPage() {
         <CustomersPagination
           page={currentPage}
           pageCount={pageCount}
-          total={sorted.length}
+          total={sortedCustomers.length}
           pageSize={PAGE_SIZE}
           onPageChange={setPage}
         />

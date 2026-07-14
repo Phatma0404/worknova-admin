@@ -32,6 +32,7 @@ interface CustomerFormDialogProps {
 const STATUS_LABELS: Record<CustomerFormValues['status'], string> = {
   active: 'Active',
   pending: 'Pending',
+  inactive: 'Inactive',
   blocked: 'Blocked',
 }
 
