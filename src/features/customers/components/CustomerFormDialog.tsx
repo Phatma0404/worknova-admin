@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -10,6 +11,7 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
+import Loader from '@/components/ui/Loader'
 import {
   Select,
   SelectTrigger,
@@ -18,60 +20,102 @@ import {
   SelectItem,
 } from '@/components/ui/select'
 import { customerSchema, type CustomerFormValues } from '../schema'
+import type { Customer } from '../types'
 
-interface AddCustomerModalProps {
+interface CustomerFormDialogProps {
+  customer?: Customer // undefined = add mode
+  isSubmitting: boolean
   onClose: () => void
+  onSubmit: (values: CustomerFormValues) => Promise<void>
 }
 
 const STATUS_LABELS: Record<CustomerFormValues['status'], string> = {
   active: 'Active',
   pending: 'Pending',
-  inactive: 'Inactive',
+  blocked: 'Blocked',
+}
+
+const EMPTY_VALUES: CustomerFormValues = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  company: '',
+  jobTitle: '',
+  status: 'active',
+  notes: '',
 }
 
 const inputClass =
   'h-9 w-full rounded-lg border border-input bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50'
 
-export default function AddCustomerModal({ onClose }: AddCustomerModalProps) {
+export default function CustomerFormDialog({
+  customer,
+  isSubmitting,
+  onClose,
+  onSubmit,
+}: CustomerFormDialogProps) {
+  const isEdit = !!customer
+
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm<CustomerFormValues>({
     resolver: zodResolver(customerSchema),
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      company: '',
-      jobTitle: '',
-      status: 'active',
-      notes: '',
-    },
+    defaultValues: customer
+      ? {
+          firstName: customer.firstName,
+          lastName: customer.lastName,
+          email: customer.email,
+          phone: customer.phone,
+          company: customer.company,
+          jobTitle: customer.jobTitle ?? '',
+          status: customer.status,
+          notes: customer.notes ?? '',
+        }
+      : EMPTY_VALUES,
   })
 
-  // Mocked - no backend integration yet, just closes the modal.
-  const onSubmit = () => {
+  // Re-sync the form when switching which customer is being edited.
+  useEffect(() => {
+    reset(
+      customer
+        ? {
+            firstName: customer.firstName,
+            lastName: customer.lastName,
+            email: customer.email,
+            phone: customer.phone,
+            company: customer.company,
+            jobTitle: customer.jobTitle ?? '',
+            status: customer.status,
+            notes: customer.notes ?? '',
+          }
+        : EMPTY_VALUES,
+    )
+  }, [customer, reset])
+
+  const submit = async (values: CustomerFormValues) => {
+    await onSubmit(values)
+    reset(EMPTY_VALUES)
     onClose()
   }
 
   return (
-    <Dialog open onOpenChange={(o) => !o && onClose()}>
+    <Dialog open onOpenChange={(o) => !o && !isSubmitting && onClose()}>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle>Add Customer</DialogTitle>
+          <DialogTitle>{isEdit ? 'Edit Customer' : 'Add Customer'}</DialogTitle>
           <DialogDescription>
-            Create a new customer record. No data is sent to a server.
+            {isEdit
+              ? 'Update the customer details below.'
+              : 'Create a new customer record. No data is sent to a server.'}
           </DialogDescription>
         </DialogHeader>
 
-        <form
-          id="customer-form"
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-4"
-        >
+        <form id="customer-form" onSubmit={handleSubmit(submit)} className="flex flex-col gap-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="flex flex-col gap-1.5">
               <Label htmlFor="cust-first-name">First Name *</Label>
@@ -126,13 +170,16 @@ export default function AddCustomerModal({ onClose }: AddCustomerModalProps) {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="flex flex-col gap-1.5">
-              <Label htmlFor="cust-company">Company</Label>
+              <Label htmlFor="cust-company">Company *</Label>
               <input
                 id="cust-company"
                 placeholder="Acme Corp"
                 className={inputClass}
                 {...register('company')}
               />
+              {errors.company && (
+                <p className="text-xs text-destructive">{errors.company.message}</p>
+              )}
             </div>
             <div className="flex flex-col gap-1.5">
               <Label htmlFor="cust-job-title">Job Title</Label>
@@ -180,11 +227,12 @@ export default function AddCustomerModal({ onClose }: AddCustomerModalProps) {
         </form>
 
         <DialogFooter>
-          <Button type="button" variant="outline" onClick={onClose}>
+          <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
             Cancel
           </Button>
-          <Button type="submit" form="customer-form">
-            Create Customer
+          <Button type="submit" form="customer-form" disabled={isSubmitting}>
+            {isSubmitting && <Loader size="sm" />}
+            {isEdit ? 'Save Changes' : 'Create Customer'}
           </Button>
         </DialogFooter>
       </DialogContent>
