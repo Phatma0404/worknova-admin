@@ -1,4 +1,14 @@
-import { Users, FolderKanban, CircleCheckBig, DollarSign } from 'lucide-react'
+import {
+  Users,
+  FolderKanban,
+  CircleCheckBig,
+  DollarSign,
+  UserPlus,
+  FileText,
+  FolderPlus,
+  CalendarPlus,
+  PackagePlus,
+} from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 // Mock data for the dashboard. Replaced with API responses in a later step.
@@ -49,6 +59,48 @@ export const stats: Stat[] = [
     trend: 'up',
     icon: DollarSign,
     iconClass: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
+  },
+]
+
+export interface QuickAction {
+  id: string
+  label: string
+  icon: LucideIcon
+  iconClass: string // colored icon container (bg + text)
+  to?: string // route to navigate to on click - actions without one stay non-functional
+}
+
+export const quickActions: QuickAction[] = [
+  {
+    id: 'new-customer',
+    label: 'New Customer',
+    icon: UserPlus,
+    iconClass: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
+    to: '/customers',
+  },
+  {
+    id: 'new-invoice',
+    label: 'New Invoice',
+    icon: FileText,
+    iconClass: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
+  },
+  {
+    id: 'create-project',
+    label: 'Create Project',
+    icon: FolderPlus,
+    iconClass: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
+  },
+  {
+    id: 'schedule-meeting',
+    label: 'Schedule Meeting',
+    icon: CalendarPlus,
+    iconClass: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
+  },
+  {
+    id: 'add-product',
+    label: 'Add Product',
+    icon: PackagePlus,
+    iconClass: 'bg-pink-500/10 text-pink-600 dark:text-pink-400',
   },
 ]
 

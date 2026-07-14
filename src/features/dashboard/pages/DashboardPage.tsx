@@ -3,6 +3,7 @@ import SectionCard from '../components/SectionCard'
 import RevenueChart from '../components/RevenueChart'
 import RecentUsersTable from '../components/RecentUsersTable'
 import RecentProjects from '../components/RecentProjects'
+import QuickActions from '../components/QuickActions'
 import { stats } from '../constants'
 
 export default function DashboardPage() {
@@ -27,9 +28,14 @@ export default function DashboardPage() {
         <SectionCard title="Revenue Overview" className="lg:col-span-2">
           <RevenueChart />
         </SectionCard>
-        <SectionCard title="Recent Projects">
-          <RecentProjects />
-        </SectionCard>
+        <div className="flex flex-col gap-4">
+          <SectionCard title="Quick Actions">
+            <QuickActions />
+          </SectionCard>
+          <SectionCard title="Recent Projects">
+            <RecentProjects />
+          </SectionCard>
+        </div>
       </div>
 
       {/* Recent users */}

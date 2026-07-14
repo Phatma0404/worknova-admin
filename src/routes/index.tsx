@@ -11,6 +11,7 @@ import SettingsPage from '@/features/settings/pages/SettingsPage'
 import ProfilePage from '@/features/profile/pages/ProfilePage'
 import CalendarPage from '@/features/calendar/pages/CalendarPage'
 import NotificationsPage from '@/features/notifications/pages/NotificationsPage'
+import CustomersPage from '@/features/customers/pages/CustomersPage'
 import LoginPage from '@/features/auth/pages/LoginPage'
 import NotFoundPage from '@/pages/NotFoundPage'
 
@@ -39,6 +40,7 @@ export const router = createBrowserRouter([
           { path: 'profile', element: <ProfilePage /> },
           { path: 'calendar', element: <CalendarPage /> },
           { path: 'notifications', element: <NotificationsPage /> },
+          { path: 'customers', element: <CustomersPage /> },
           // Further feature routes are added here as siblings
         ],
       },
